@@ -1,0 +1,78 @@
+:root {
+    --vheight: 20px;
+}
+
+* {
+    background-color: #222222;
+    text-align: center;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+body {
+    margin: 10;
+}
+
+#flex {
+    display: flex;
+}
+
+table {
+    margin: 10;
+}
+
+th,
+td {
+    border: 1px black solid;
+}
+
+input {
+    border: none;
+}
+
+th input {
+    font-size: 16px;
+}
+
+tr td div,
+tr td input {
+    background-color: #222222;
+    min-height: var(--vheight);
+}
+
+tr th input,
+tr th textarea,
+tr td:nth-child(4) div,
+tr td:nth-child(4) input {
+    width: 100%;
+    min-height: calc(var(--vheight) * 2);
+}
+
+.line td {
+    border: 1px #444444 solid;
+}
+
+tr td:nth-child(1) {
+    color: orange;
+    width: 20px;
+}
+
+tr td:nth-child(2) {
+    width: 20px;
+}
+
+tr td:nth-child(3) {
+    min-width: 100px;
+}
+
+tr td:nth-child(4) {
+    min-width: 100px;
+}
+
+.scale {
+    display: inline-block;
+    transform: scale(1, 0.5);
+    transform-origin: bottom;
+}
