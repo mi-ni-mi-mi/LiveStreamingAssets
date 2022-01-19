@@ -1,0 +1,355 @@
+<html>
+
+<head>
+    <style type="text/css">
+         :root {
+            --vheight: 24px;
+            --vwidth: 24px;
+        }
+        
+        * {
+            background-color: #333333;
+            text-align: center;
+            font-size: calc(var(--vheight) * 0.7);
+            margin: 0;
+            padding: 0;
+            color: white;
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+        
+        .fs1 {
+            font-size: calc(var(--vheight) * 0.85);
+        }
+        
+        #flex {
+            display: flex;
+        }
+        
+        input,
+        textarea {
+            border: none;
+            width: 100%;
+        }
+        
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            opacity: 0.5;
+        }
+        
+         ::placeholder {
+            color: #555555;
+        }
+        
+        table {
+            margin: 10px;
+            background-color: #444444;
+        }
+        
+        th,
+        td {
+            border-top: 2px black solid;
+            border-bottom: 2px black solid;
+            border-left: 1px black solid;
+            border-right: 1px black solid;
+        }
+        
+        .cr1 {
+            background-color: #404040;
+        }
+        
+        .cr2 {
+            background-color: #444444;
+        }
+        
+        .line {
+            border: 1px #666666 solid;
+        }
+        
+        .orange {
+            color: orange;
+            text-shadow: 0 0 5px yellow;
+        }
+        
+        .wh1 {
+            /* ヘッダーの１列目の幅 */
+            width: calc(var(--vwidth) * 2);
+            max-width: calc(var(--vwidth) * 2);
+        }
+        
+        .wh2 {
+            /* １列目と２列目の幅 */
+            width: var(--vwidth);
+        }
+        
+        .ht1 {
+            /* ヘッダーの高さ */
+            height: calc(var(--vheight) * 2);
+            min-height: calc(var(--vheight) * 2);
+        }
+        
+        .ht2 {
+            /* 上下に分割された箇所の高さ */
+            height: var(--vheight);
+            min-height: var(--vheight);
+            max-height: var(--vheight);
+            line-height: var(--vheight);
+        }
+        
+        .ht3 {
+            /* 上下に分割されていない箇所の高さ */
+            height: var(--vheight);
+            min-height: calc(var(--vheight) * 2);
+            max-height: calc(var(--vheight) * 2);
+            line-height: calc(var(--vheight) * 2);
+        }
+        
+        .parent {
+            position: relative;
+        }
+        
+        .text1,
+        .text2,
+        .text3 {
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+        }
+        
+        .cover1,
+        .cover2 {
+            position: absolute;
+            top: var(--vheight);
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+        }
+        
+        .cover3 {
+            position: absolute;
+            top: calc(var(--vheight) * 2);
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="flex">
+        <table id="tableLeft">
+            <thead>
+                <tr>
+                    <th class="wh1" colspan="2">
+                        <input id="input1" class="ht1 wh1" type="number" value=10>
+                    </th>
+                    <th class="ht1">
+                        <textarea readonly id="textarea1" class="ht1"></textarea>
+                    </th>
+                    <th class="ht1">
+                        <textarea readonly id="textarea2" class="ht1"></textarea>
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="tbodyLeft">
+                <tr>
+                    <td class="wh2">
+                        <div class="wh2">
+                            <input id="checkbox1" type="checkbox">
+                        </div>
+                    </td>
+                    <td class="wh2">
+                        <div class="wh2">1</div>
+                    </td>
+                    <td>
+                        <div id="div1" class="ht2">
+                            <input class="ht2" placeholder="text">
+                        </div>
+                        <div class="line"></div>
+                        <div class="ht2">
+                            <input class="ht2" placeholder="text">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ht3">
+                            <input class="ht3" placeholder="text">
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table id="tableRight">
+            <thead>
+                <tr>
+                    <th colspan="3" class="ht1">
+                        <input class="ht1 fs1" value="ザ・ベストテン">
+                    </th>
+                    <th>
+                        <input class="ht1 fs1" value="カスタム">
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="tbodyRight">
+                <tr>
+                    <td class="wh2">
+                        <div class="wh2 orange">●</div>
+                    </td>
+                    <td class="wh2">
+                        <div class="wh2">1</div>
+                    </td>
+                    <td>
+                        <div class="ht2 parent">
+                            <div class="cr1 text1"></div>
+                            <div class="cover1"></div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="ht2 parent">
+                            <div class="cr2 text2"></div>
+                            <div class="cover2"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ht3 parent">
+                            <div class="cr2 text3"></div>
+                            <div class="cover3"></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const tableLeft = document.getElementById("tableLeft");
+        const tableRight = document.getElementById("tableRight");
+        const tbodyLeft = document.getElementById("tbodyLeft");
+        const tbodyRight = document.getElementById("tbodyRight");
+        const input1 = document.getElementById("input1");
+        const checkbox1 = document.getElementById("checkbox1");
+        const textarea1 = document.getElementById("textarea1");
+        const textarea2 = document.getElementById("textarea2");
+        const div1 = document.getElementById("div1");
+
+        // テーブル幅の調整
+        const resizeObserver1 = new ResizeObserver((e) => {
+            tableRight.rows[1].cells[2].style.width = e[0].contentRect.width;
+            tableRight.rows[0].cells[0].children[0].style.height = e[0].contentRect.height;
+            tableLeft.rows[1].cells[2].style.width = e[0].contentRect.width;
+            tableLeft.rows[0].cells[2].children[0].style.height = e[0].contentRect.height;
+        });
+        const resizeObserver2 = new ResizeObserver((e) => {
+            tableRight.rows[1].cells[3].style.width = e[0].contentRect.width;
+            tableRight.rows[0].cells[0].children[0].style.height = e[0].contentRect.height;
+            tableLeft.rows[1].cells[3].style.width = e[0].contentRect.width;
+            tableLeft.rows[0].cells[1].children[0].style.height = e[0].contentRect.height;
+        });
+        resizeObserver1.observe(textarea1);
+        resizeObserver2.observe(textarea2);
+
+
+        // チェックボックスにイベントリスナーを付与
+        checkbox1.addEventListener('change', (e) => {
+            setText(e);
+        });
+
+
+        // はじめに10行追加
+        let rowNum = input1.value;
+        for (let i = 1; i < rowNum; i++) {
+            addNewRow(i);
+        }
+
+        function addNewRow(i) {
+            // 左側のテーブル
+            let trLeft = tbodyLeft.children[0].cloneNode(true);
+            trLeft.children[1].children[0].textContent = i + 1;
+            trLeft.children[0].children[0].addEventListener('change',
+                (e) => {
+                    setText(e);
+                }); // チェックボックスにイベントリスナーを付与
+            tbodyLeft.appendChild(trLeft);
+
+            // 右側のテーブル
+            let trRight = tbodyRight.children[0].cloneNode(true);
+            trRight.children[1].children[0].textContent = i + 1;
+            tbodyRight.appendChild(trRight);
+        }
+
+        function removeRows(num) {
+            for (let i = 0; i < num; i++) {
+                tbodyLeft.lastChild.remove();
+                tbodyRight.lastChild.remove();
+            }
+        }
+
+        // 行追加・行削除
+        let inputRowNum = 10;
+        input1.addEventListener('input', function(e) {
+            inputRowNum = Number(e.target.value);
+            if (Number.isInteger(inputRowNum) && inputRowNum > 0) { // 非負の整数なら
+                if (rowNum < inputRowNum) { // 多いなら行追加
+                    for (let i = rowNum; i < inputRowNum; i++) {
+                        addNewRow(Number(i));
+                    }
+                } else if (rowNum > inputRowNum) { // 少ないなら行削除
+                    removeRows(rowNum - inputRowNum);
+                }
+                rowNum = inputRowNum;
+            }
+        });
+
+        // 値をセットする関数
+        function setText(e) {
+            let flag = e.target.checked;
+            let trLeft = e.target.parentNode.parentNode.parentNode;
+            let values = [ // 左テーブルの値
+                trLeft.children[2].children[0].children[0].value,
+                trLeft.children[2].children[2].children[0].value,
+                trLeft.children[3].children[0].children[0].value
+            ];
+            let divs = [ // 右テーブルの値を入れるdiv達
+                tableRight.rows[trLeft.rowIndex].cells[2].children[0],
+                tableRight.rows[trLeft.rowIndex].cells[2].children[2],
+                tableRight.rows[trLeft.rowIndex].cells[3].children[0]
+            ];
+            let divHeight = div1.getBoundingClientRect().height;
+
+            // 表示
+            if (flag) {
+                const repeatNum = 5;
+                const frameNum = 10;
+                const dt = 10;
+                let cnt = 0;
+                const timer = setInterval(() => {
+                    cnt++;
+                    let cntMod = cnt % (frameNum * 2);
+
+                    if (cnt == frameNum * (repeatNum - 1) * 2 + 1) {
+                        divs[0].children[0].textContent = values[0];
+                    }
+                    if (cnt == frameNum * ((repeatNum - 1) * 2 + 1) + 1) {
+                        divs[1].children[0].textContent = values[1];
+                        divs[2].children[0].textContent = values[2];
+                    }
+                    if (cnt < repeatNum * frameNum * 2) {
+                        if (cntMod <= frameNum) {
+                            divs[0].children[1].style.top = divHeight * (cntMod / frameNum) + "px";
+                        } else if (frameNum < cntMod && cntMod <= frameNum * 2) {
+                            divs[1].children[1].style.top = divHeight * ((cntMod - frameNum) / frameNum) + "px";
+                        }
+                    } else {
+                        clearInterval(timer);
+                    }
+                }, dt);
+            } else {
+                for (let i = 0; i < divs.length; i++) {
+                    divs[i].children[0].textContent = "";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
