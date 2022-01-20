@@ -2,12 +2,12 @@
 
 <head>
     <style type="text/css">
-         :root {
+        :root {
             --vheight: 24px;
             --bheight: 1px;
             --vwidth: 24px;
         }
-        
+
         * {
             background-color: #333333;
             text-align: center;
@@ -18,44 +18,44 @@
             font-family: sans-serif;
             font-weight: bold;
         }
-        
+
         .fs1 {
             font-size: calc(var(--vheight) * 0.85);
         }
-        
+
         .fs2 {
             font-size: calc(var(--vheight) * 0.7);
         }
-        
+
         .orange {
             color: yellow;
             text-shadow: 0 0 5px orange;
         }
-        
+
         #flex {
             display: flex;
         }
-        
+
         input,
         textarea {
             border: none;
             width: 100%;
         }
-        
+
         input[type=number]::-webkit-inner-spin-button,
         input[type=number]::-webkit-outer-spin-button {
             opacity: 0.5;
         }
-        
-         ::placeholder {
+
+        ::placeholder {
             color: #555555;
         }
-        
+
         table {
             margin: 10px;
             background-color: #444444;
         }
-        
+
         th,
         td {
             border-top: 2px black solid;
@@ -63,52 +63,52 @@
             border-left: 1px black solid;
             border-right: 1px black solid;
         }
-        
+
         .cr1 {
             background-color: #404040;
         }
-        
+
         .cr2 {
             background-color: #444444;
         }
-        
+
         .line {
             border: var(--bheight) #666666 solid;
         }
-        
+
         .wh1 {
             /* ヘッダーの１列目の幅 */
             width: calc(var(--vwidth) * 2);
             max-width: calc(var(--vwidth) * 2);
         }
-        
+
         .wh2 {
             /* １列目と２列目の幅 */
             width: var(--vwidth);
         }
-        
+
         .ht1 {
             /* ヘッダーの高さ */
             height: calc(var(--vheight) * 2);
             min-height: calc(var(--vheight) * 2);
         }
-        
+
         .ht2 {
             /* 上下に分割された箇所の高さ */
             height: var(--vheight);
             line-height: var(--vheight);
         }
-        
+
         .ht3 {
             /* 上下に分割されていない箇所の高さ */
             height: calc(var(--vheight) * 2 + var(--bheight) * 2);
             line-height: calc(var(--vheight) * 2 + var(--bheight) * 2);
         }
-        
+
         .parent {
             position: relative;
         }
-        
+
         .text1,
         .text2,
         .text3 {
@@ -118,7 +118,7 @@
             left: 0px;
             right: 0px;
         }
-        
+
         .cover1,
         .cover2 {
             position: absolute;
@@ -127,7 +127,7 @@
             left: 0px;
             right: 0px;
         }
-        
+
         .cover3 {
             position: absolute;
             top: calc(var(--vheight) * 2 + var(--bheight) * 2);
@@ -267,9 +267,7 @@
             let trLeft = tbodyLeft.children[0].cloneNode(true);
             trLeft.children[1].children[0].textContent = i + 1;
             trLeft.children[0].children[0].addEventListener('change',
-                (e) => {
-                    setText(e);
-                }); // チェックボックスにイベントリスナーを付与
+                (e) => { setText(e); }); // チェックボックスにイベントリスナーを付与
             tbodyLeft.appendChild(trLeft);
 
             // 右側のテーブル
@@ -287,7 +285,7 @@
 
         // 行追加・行削除
         let inputRowNum = 10;
-        input1.addEventListener('input', function(e) {
+        input1.addEventListener('input', function (e) {
             inputRowNum = Number(e.target.value);
             if (Number.isInteger(inputRowNum) && inputRowNum > 0) { // 非負の整数なら
                 if (rowNum < inputRowNum) { // 多いなら行追加
@@ -316,34 +314,48 @@
             ];
             let divHeight = div1.getBoundingClientRect().height;
 
-            // チェックされたら表示
-            if (e.target.checked) {
-                const repeatNum = 5;
-                const frameNum = divHeight / 2;
+
+            if (e.target.checked) { // チェックが入れられたら値をセットする
+                const n = 5; // 上下それぞれ、n回の紙めくり
+                const x = divHeight / 2; // 1回の紙めくりのフレーム数はx
                 const dt = 10;
                 let cnt = 0;
                 const timer = setInterval(() => {
                     cnt++;
-                    let cntMod = cnt % (frameNum * 2);
-                    if (cntMod == 0) cntMod = frameNum * 2;
-                    if (cnt == frameNum * (repeatNum - 1) * 2 + 1) {
+                    cntMod = cnt % (x * 2);
+                    if (cntMod == 0) cntMod = n * x;
+                    // 上の紙に値をセットする
+                    if (cnt == 2 * (n - 1) * x + 1) {
                         divs[0].children[0].textContent = values[0];
                     }
-                    if (cnt == frameNum * ((repeatNum - 1) * 2 + 1) + 1) {
+                    // 下の紙に値をセットする
+                    if (cnt == 2 * (n - 1) * x + (x + 1)) {
                         divs[1].children[0].textContent = values[1];
                         divs[2].children[0].textContent = values[2];
                     }
-                    if (cnt <= repeatNum * frameNum * 2) {
-                        if (cntMod <= frameNum) {
-                            divs[0].children[1].style.top = divHeight * (cntMod / frameNum) + "px";
-                        } else if (cntMod <= frameNum * 2) {
-                            divs[1].children[1].style.top = divHeight * ((cntMod - frameNum) / frameNum) + "px";
-                        }
-                    } else {
+                    // 上の紙のアニメーション
+                    if (cntMod <= x) {
+                        divs[0].children[1].style.top = divHeight * (cntMod / x) + "px";
+                    }
+                    // 下の紙のアニメーション
+                    if (x < cntMod && cntMod <= n * x) {
+                        divs[1].children[1].style.top = divHeight * ((cntMod - x) / x) + "px";
+                    }
+                    // 終了
+                    if (cnt == x * 2 * n) {
                         clearInterval(timer);
                     }
+                    /*
+                    n = 3, x = 20 の場合
+                    cnt++; // 1~20,21~40,41~60,61~80,81~100,101~120
+                    if (cnt == 81) 上の紙に値をセット;
+                    if (cnt == 101) 下の紙に値をセット;
+                    if ( 1 <= cnt <= 20 || 41 <= cnt <= 60 || ~省略~) 上の紙のアニメーション;
+                    if (21 <= cnt <= 40 || 61 <= cnt <= 80 || ~省略~) 下の紙のアニメーション;
+                    if (cnt == 80) exit;
+                    */
                 }, dt);
-            } else { // 非表示
+            } else { // チェックが外されたら値をリセットする
                 for (let i = 0; i < divs.length; i++) {
                     divs[i].children[0].textContent = "";
                 }
